@@ -3,10 +3,27 @@
 <head>
   <title>Test</title>
   <meta charset="UTF-8"/>
-  <script type="text/javascript" src="script1.js" defer></script> 
+  <script type="text/javascript" src="script1.js" defer></script>
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <table id="bookShelf">
+  <input type="button" class="open" onclick="openForm()" value="Open Form">
+  <div class="form-popup" id="myForm">
+    <form class="form-container">
+      <label for="Title">Title</label>
+      <input type="text" id="Title" name="Title">
+      <label for="Author">Author</label>
+      <input type="text" id="Author" name="Author">
+      <label for="Pages">Pages</label>
+      <input type="text" id="Pages" name="Pages">
+      <label for="Read">Read</label>
+      <input type="text" id="Read" name="Read">
+      <input type="submit" value="Submit" class="btn submit">
+      <input type="submit" class="btn cancel" value="Close" onclick="closeForm()">
+    </form>
+  </div>
+
+    <table>
         <thead>
             <tr>
                 <th>Title</th>
@@ -15,7 +32,7 @@
                 <th>Status</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="bookShelf">
             
         </tbody>
     </table>
