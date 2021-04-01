@@ -1,5 +1,19 @@
 let myLibrary = [];
 
+const myLibraryFromLocal = localStorage.getItem('myLibrary')
+
+if(myLibraryFromLocal && myLibraryFromLocal.length) {
+    setData()
+}
+
+
+const form = document.querySelector('.form-container')
+// form.onsubmit = saveToStorage(form)
+
+// form.onsubmit = saveToStorage(form)
+form.addEventListener('submit', saveToStorage)
+
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -10,6 +24,10 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook)
+}
+
+function displayLibrary(library) {
+    library.forEach(displayBook)
 }
 
 function displayBook(book) {
@@ -32,14 +50,52 @@ function closeForm() {
 
 
 
-const form = document.querySelector('.form-container')
 
-form.addEventListener('submit', e => {
+// form.addEventListener('submit', e => {
+//     let title = form.elements['Title'].value
+//     let author = form.elements['Author'].value
+//     let pages = form.elements['Pages'].value
+//     let read = form// form.addEventListener('submit', e => {
+//     let title = form.elements['Title'].value
+//     let author = form.elements['Author'].value
+//     let pages = form.elements['Pages'].value
+//     let read = form.elements['Read'].value == "on" ? "Read" : "Unread"
+//     addBookToLibrary(title, author, pages, read)
+//     displayBook(myLibrary[myLibrary.length - 1])
+// }).elements['Read'].value == "on" ? "Read" : "Unread"
+//     addBookToLibrary(title, author, pages, read)
+//     displayBook(myLibrary[myLibrary.length - 1])
+// })
+
+
+
+function setData() {
+    // const myLibraryFromLocal = localStorage.getItem('myLibrary')
+    // if (myLibraryFromLocal && )
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+
+    displayLibrary(myLibrary);
+}
+
+// function populateStorage() {
+//     localStorage.setItem('myLibrary', []);
+// }
+
+function saveToStorage(e) {
+    e.preventDefault();
+    const form = e.target
     let title = form.elements['Title'].value
     let author = form.elements['Author'].value
     let pages = form.elements['Pages'].value
-    let read = form.elements['Read'].value == "on" ? "Read" : "Unread"
-    addBookToLibrary(title, author, pages, read)
-    displayBook(myLibrary[myLibrary.length - 1])
-})
+    console.log("Checkbox:", form.elements['Read'].value)
+    let read = form.elements['Read'].value
+    const newBook = new Book(title, author, pages, read)
+    myLibrary.push(newBook)
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+    displayBook(newBook)
+    
+    form.reset()
+}
+
+
 
