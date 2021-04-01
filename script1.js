@@ -37,7 +37,9 @@ function displayBook(book, index) {
     let row = ""
     const tr = document.createElement("tr")
     const tbody = document.querySelector("#bookShelf")
-    row += "<td>" + index + "</td>" + "<td>" + book.title + "</td>" + "<td>" + book.author + "</td>" + "<td>" + book.pages + "</td>" + "<td>" + book.read + "</td>"
+    const status = book.read == "Read" ? 'Read' : ""
+    row += "<td>" + index + "</td>" + "<td>" + book.title + "</td>" + "<td>" + book.author + "</td>" + "<td>" + book.pages + "</td>"
+    row += `<td class="status-cell">` + `<button type="button" class="status ${status}" dataId="${index}" onclick="changeStatus(${index})"></button>` + "</td>"
     row += `<td class="button-cell"><input type="button" value="x" dataId="${index}" class="remove" onclick="remove(${index})"></td>`
     tr.innerHTML = row;
     tr.setAttribute("dataid", `${index}`)
@@ -126,6 +128,14 @@ function remove(index) {
     const removedChild =  tbody.querySelector(`tr[dataId="${index}"]`)
     tbody.removeChild(removedChild)
     myLibrary.splice(index, 1)
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
-    displayLibrary(myLibrary)
+    update()
+}
+
+function changeStatus(index) {
+    const target =  document.querySelector(`button[dataId="${index}"]`)
+    target.classList.toggle("Read")
+    myLibrary[index].read = (myLibrary[index].read == "Read") ? "Unread" : "Read"
+    update()
+
+
 }

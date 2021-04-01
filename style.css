@@ -95,3 +95,31 @@ thead {
 #title-head {
     width: 50%;
 }
+
+.status {
+    display: block;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background:  no-repeat url('images/check.svg');
+}
+
+.status {
+    display: block;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background:  no-repeat url('images/uncheck.svg');
+}
+
+.status-cell {
+    text-align: center; 
+	height: 50px;
+	padding-top: 10px;
+    padding-left: 10px;
+	line-height: 22px;
+}
+
+.status.Read {
+    background:  no-repeat url('images/check.svg');
+}
