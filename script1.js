@@ -14,6 +14,7 @@ const form = document.querySelector('.form-container')
 form.addEventListener('submit', saveToStorage)
 
 
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -27,15 +28,19 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayLibrary(library) {
+    document.querySelector("#bookShelf").innerHTML = ""
     library.forEach(displayBook)
+    
 }
 
-function displayBook(book) {
+function displayBook(book, index) {
     let row = ""
     const tr = document.createElement("tr")
     const tbody = document.querySelector("#bookShelf")
-    row += "<td>" + book.title + "</td>" + "<td>" + book.author + "</td>" + "<td>" + book.pages + "</td>" + "<td>" + book.read + "</td>"
+    row += "<td>" + index + "</td>" + "<td>" + book.title + "</td>" + "<td>" + book.author + "</td>" + "<td>" + book.pages + "</td>" + "<td>" + book.read + "</td>"
+    row += `<td class="button-cell"><input type="button" value="x" dataId="${index}" class="remove" onclick="remove(${index})"></td>`
     tr.innerHTML = row;
+    tr.setAttribute("dataid", `${index}`)
     tbody.append(tr)
 }
 
@@ -87,15 +92,40 @@ function saveToStorage(e) {
     let title = form.elements['Title'].value
     let author = form.elements['Author'].value
     let pages = form.elements['Pages'].value
-    console.log("Checkbox:", form.elements['Read'].value)
-    let read = form.elements['Read'].value
+    // console.log("Checkbox:", form.elements['Read'].value)
+    let read = form.elements['Read'].checked ? "Read" : "Unread"
     const newBook = new Book(title, author, pages, read)
     myLibrary.push(newBook)
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
-    displayBook(newBook)
-    
+    update()    
     form.reset()
 }
 
+function update() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+    displayLibrary(myLibrary)
+}
 
+// const removeBtns = document.querySelectorAll(`input.remove`)
+// console.log(removeBtns)
+// removeBtns.forEach(btn => {
+//     btn.addEventListener('click', e => {
+//         console.log("parrot")
+//         // console.log(e.target.attributes.dataid.value)
+//         const tbody = document.querySelector("#bookShelf")
+//         const removedChild =  tbody.querySelector(`tr[dataId="${e.target.attributes.dataid.value}"]`)
+//         tbody.removeChild(removedChild)
+//         myLibrary.splice(e.target.attributes.dataid.value, 1)
+//         localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+//         displayLibrary(myLibrary)
+//     })
+// })
 
+function remove(index) {
+    console.log("parror")
+    const tbody = document.querySelector("#bookShelf")
+    const removedChild =  tbody.querySelector(`tr[dataId="${index}"]`)
+    tbody.removeChild(removedChild)
+    myLibrary.splice(index, 1)
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+    displayLibrary(myLibrary)
+}

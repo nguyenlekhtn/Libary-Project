@@ -5,8 +5,16 @@ table, th, td {
     border-collapse: collapse;
 }
 
+table {
+    width: 100%;
+    margin: 0 auto;
+    table-layout: fixed;
+}
+
 th, td {
     padding: 15px;
+    border: 2px solid black;
+    text-overflow: hidden;
 }
 
 thead {
@@ -69,4 +77,21 @@ thead {
 
 .form-container .btn:hover, .open:hover {
     opacity: 1;
+}
+
+.remove {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.button-cell {
+    text-align: center; 
+	height: 50px;
+	padding-top: 10px;
+	line-height: 22px;
+}
+
+#title-head {
+    width: 50%;
 }

@@ -11,13 +11,13 @@
   <div class="form-popup" id="myForm">
     <form class="form-container">
       <label for="Title">Title</label>
-      <input type="text" id="Title" name="Title" placeholder="Title">
+      <input type="text" id="Title" name="Title" placeholder="Title" required>
       <label for="Author">Author</label>
-      <input type="text" id="Author" name="Author" placeholder="Author">
+      <input type="text" id="Author" name="Author" placeholder="Author" required>
       <label for="Pages">Pages</label>
       <label for="Status">Read</label>
-      <input type="text" id="Pages" name="Pages" placeholder="the number of pages">
-      <input type="hidden" id="ReadHidden" name="Status" value="Unread">
+      <input type="text" id="Pages" name="Pages" placeholder="the number of pages" required>
+      <!-- <input type="hidden" id="ReadHidden" name="Status" value="Unread"> -->
       <input type="checkbox" id="Read" name="Status" value="Read">
 
       <input type="submit" value="Submit" class="btn submit">
@@ -28,10 +28,12 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
+                <th>id</th>
+                <th id="title-head">Title</th>
                 <th>Author</th>
                 <th>Pages</th>
                 <th>Status</th>
+                <th>x</th>
             </tr>
         </thead>
         <tbody id="bookShelf">
