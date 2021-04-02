@@ -1,5 +1,30 @@
 let myLibrary = [];
 
+const inputs = document.querySelectorAll('input[type="text"]')
+
+inputs.forEach(input => {
+    input.addEventListener('keyup', e => {
+        validate(e.target, patterns[e.target.attributes.name.value])
+    })
+});
+
+function validate(field, regex) {
+    if(regex.test(field.value)) {
+        field.className = "valid"
+    }
+    else {
+        field.className = "invalid"
+    }
+
+}
+
+const patterns = {
+    Pages: /^[\d]+$/,
+    Author: /^[a-z\.]+$/,
+    Title: /^.{1,30}$/
+
+};
+
 const myLibraryFromLocal = localStorage.getItem('myLibrary')
 
 if(myLibraryFromLocal && myLibraryFromLocal.length) {

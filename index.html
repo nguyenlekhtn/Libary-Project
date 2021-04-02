@@ -7,24 +7,29 @@
   <script type="text/javascript" src="script1.js" defer></script>
 </head>
 <body>
+  <h1>Your Library</h1>
   <input type="button" class="open" onclick="openForm()" value="Open Form">
   <div class="form-popup" id="myForm">
     <form class="form-container">
       <label for="Title">Title</label>
       <input type="text" id="Title" name="Title" placeholder="Title" required>
+      <p>1-30 characters</p>
       <label for="Author">Author</label>
       <input type="text" id="Author" name="Author" placeholder="Author" required>
+      <p>Only alphacharacters, . and dot symbol are allowed</p>
       <label for="Pages">Pages</label>
-      <label for="Status">Read</label>
       <input type="text" id="Pages" name="Pages" placeholder="the number of pages" required>
+      <p>Only numbers are allowed</p>
       <!-- <input type="hidden" id="ReadHidden" name="Status" value="Unread"> -->
+      <label for="Status">Read</label>
       <input type="checkbox" id="Read" name="Status" value="Read">
-
+      
       <input type="submit" value="Submit" class="btn submit">
       <input type="button" class="btn cancel" value="Close" onclick="closeForm()">
     </form>
   </div>
 
+  <div class="table-container">
     <table>
         <thead>
             <tr>
@@ -32,7 +37,7 @@
                 <th id="title-head">Title</th>
                 <th>Author</th>
                 <th>Pages</th>
-                <th>Status</th>
+                <th>Read Status</th>
                 <th>x</th>
             </tr>
         </thead>
@@ -40,6 +45,7 @@
             
         </tbody>
     </table>
+  </div>
 
 
 

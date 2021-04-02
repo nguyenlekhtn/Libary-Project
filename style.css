@@ -1,5 +1,14 @@
 * {box-sizing: border-box;}
 
+html, body {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -37,11 +46,15 @@ thead {
 .form-popup {
     display: none;
     position: fixed;
+    font-size: 1rem;
     bottom: 0;
     right: 15px;
-    border: 3px solid #f1f1f1;
+    border: 3px solid #ccc;
+    border-radius: 5px;
     z-index: 9;
+    box-shadow: -10px 10px 20px rgba(0,0,0,0.3);
 }
+
 
 .form-container {
     max-width: 300px;
@@ -96,13 +109,7 @@ thead {
     width: 50%;
 }
 
-.status {
-    display: block;
-    height: 30px;
-    width: 30px;
-    border: none;
-    background:  no-repeat url('images/check.svg');
-}
+
 
 .status {
     display: block;
@@ -110,6 +117,7 @@ thead {
     width: 30px;
     border: none;
     background:  no-repeat url('images/uncheck.svg');
+    margin: auto;
 }
 
 .status-cell {
@@ -122,4 +130,38 @@ thead {
 
 .status.Read {
     background:  no-repeat url('images/check.svg');
+}
+
+input[type="text"] {
+    /* display: block; */
+    padding: 8px 16px;
+    font-size: 1em;
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 10px;
+    border: 3px solid #ccc;
+    outline: none;
+}
+
+input.valid {
+    border-color: #36cc36;
+}
+
+input.invalid {
+    border-color: orange;
+}
+
+input + p {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: orange;
+    margin: 0 10px;
+    text-align: center;
+    opacity: 0;
+    height: 0;
+}
+
+input.invalid + p {
+    opacity: 1;
+    height: auto;
 }
