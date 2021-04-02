@@ -20,7 +20,7 @@ function validate(field, regex) {
 
 const patterns = {
     Pages: /^[\d]+$/,
-    Author: /^[a-z\.]+$/,
+    Author: /^[a-z\.]+$/i,
     Title: /^.{1,30}$/
 
 };
@@ -115,16 +115,25 @@ function setData() {
 
 function saveToStorage(e) {
     e.preventDefault();
-    const form = e.target
-    let title = form.elements['Title'].value
-    let author = form.elements['Author'].value
-    let pages = form.elements['Pages'].value
-    // console.log("Checkbox:", form.elements['Read'].value)
-    let read = form.elements['Read'].checked ? "Read" : "Unread"
-    const newBook = new Book(title, author, pages, read)
-    myLibrary.push(newBook)
-    update()    
-    form.reset()
+    const inputsArr = [...inputs]
+    const checker = inputsArr.reduce( (accumulator, currentValue) => accumulator || currentValue.classList.contains('invalid'), false);
+    console.log(checker);
+    if(!checker)  {
+        const form = e.target
+        let title = form.elements['Title'].value
+        let author = form.elements['Author'].value
+        let pages = form.elements['Pages'].value
+        // console.log("Checkbox:", form.elements['Read'].value)
+        let read = form.elements['Read'].checked ? "Read" : "Unread"
+        const newBook = new Book(title, author, pages, read)
+        myLibrary.push(newBook)
+        update()    
+        form.reset()
+        inputs.forEach(input =>
+            input.classList.remove('valid', 'invalid')
+
+        )
+    }
 }
 
 function update() {

@@ -8,6 +8,12 @@ html, body {
     text-align: center;
 }
 
+input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none;
+}
+
+
+
 
 table, th, td {
     border: 1px solid black;
